@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const TrackSchema = new mongoose.Schema(
   {
     name: { type: String },
-    album: { type: string },
+    album: { type: String },
     cover: {
       type: String,
       validate: {
