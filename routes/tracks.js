@@ -7,10 +7,11 @@ const {
   updateItem,
   deleteItem,
 } = require('../controllers/tracks.controller');
+const { validatorCreateTrack } = require('../validators/tracks.validator');
 
 router.get('/', getItems);
 router.get('/:id', getItem);
-router.post('/', postItem);
+router.post('/', validatorCreateTrack, postItem);
 router.patch('/:id', updateItem);
 router.delete('/:id', deleteItem);
 
