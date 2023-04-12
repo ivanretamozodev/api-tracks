@@ -15,4 +15,8 @@ const validatorCreateTrack = [
   (req, res, next) => validateFields(req, res, next),
 ];
 
-module.exports = { validatorCreateTrack };
+const validatorGetTrack = [
+  check('id').exists().notEmpty().isMongoId(),
+  (req, res, next) => validateFields(req, res, next),
+];
+module.exports = { validatorCreateTrack, validatorGetTrack };
