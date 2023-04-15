@@ -6,7 +6,7 @@ const {
   deleteTrack,
 } = require('../services/tracks.service');
 const { matchedData } = require('express-validator');
-const { handleHttp } = require('../utils/handle-http');
+const handleHttp = require('../utils/handle-http');
 
 const getItems = async (req, res) => {
   try {

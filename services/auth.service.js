@@ -5,9 +5,6 @@ const { tokenSign } = require('../utils/handle-jwt');
 const loginUser = async (data) => {
   const { email, password } = data;
   const user = await usersModel.findOne({ email });
-  if (!user) {
-    throw new Error('User Not Found');
-  }
 
   const passwordHash = user.password;
   const check = await compare(password, passwordHash);

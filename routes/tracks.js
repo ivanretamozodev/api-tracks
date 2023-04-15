@@ -12,8 +12,10 @@ const {
   validatorGetTrack,
 } = require('../validators/tracks.validator');
 const customHeader = require('../middlewares/customHeader');
+const { authMiddleware } = require('../middlewares/session');
+const { authRole } = require('../middlewares/role');
 
-router.get('/', [customHeader], getItems);
+router.get('/', [authMiddleware, authRole(['admin']), customHeader], getItems);
 router.get('/:id', validatorGetTrack, getItem);
 router.post('/', validatorCreateTrack, postItem);
 router.put('/:id', [validatorGetTrack, validatorCreateTrack], updateItem);
