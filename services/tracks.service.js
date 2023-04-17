@@ -5,7 +5,7 @@ const getTracks = async () => {
   return data;
 };
 const getTrack = async (id) => {
-  const data = await tracksModel.findById(id);
+  const data = await tracksModel.findAllData(id);
   return data;
 };
 const createTrack = async (trackData) => {

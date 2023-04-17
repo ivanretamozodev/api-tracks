@@ -29,4 +29,18 @@ const TrackSchema = new mongoose.Schema(
   { timestamps: true, versionKey: false },
 );
 
+TrackSchema.static.findAllData = function () {
+  const joinData = this.aggregate([
+    {
+      $lookup: {
+        from: 'storages',
+        localField: 'mediaId',
+        foreignField: 'id',
+        as: 'audio',
+      },
+    },
+  ]);
+  return joinData;
+};
+
 module.exports = mongoose.model('tracks', TrackSchema);
