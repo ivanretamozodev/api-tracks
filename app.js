@@ -2,7 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const morganBody = require('morgan-body');
-
+const openApiConfiguration = require('./docs/swagger');
+const swaggerUi = require('swagger-ui-express');
 const dbConnect = require('./config/mongo');
 const { loggerStream } = require('./utils/handle-logger');
 const app = express();
@@ -18,6 +19,13 @@ morganBody(app, {
     return res.statusCode < 400;
   },
 });
+
+//DOCUMENTATION
+app.use(
+  '/documentation',
+  swaggerUi.serve,
+  swaggerUi.setup(openApiConfiguration),
+);
 
 const port = process.env.PORT || 5000;
 //ROUTES
